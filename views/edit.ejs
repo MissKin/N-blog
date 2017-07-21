@@ -1,0 +1,27 @@
+<%- include('header') %>
+<div class="ui grid">
+    <div class="four wide column">
+        <a class="avatar"
+           href="/posts?author=<%= post.author._id %>"
+           data-title="<%= post.author.name %> | <%= ({m: '男', f: '女', x: '保密'})[post.author.gender] %>"
+           data-content="<%= post.author.bio %>">
+            <img class="avatar" src="/img/<%= post.author.avatar %>">
+        </a>
+    </div>
+
+    <div class="eight wide column">
+        <form action="/posts/<%= post._id%>/edit" method="post" class="ui form segment">
+            <div class="field required">
+                <label>标题</label>
+                <input type="text" name="title" value="<%= post.title%>">
+            </div>
+            <div class="field required">
+                <label>内容</label>
+                <textarea name="content" rows="15"><%= post.content%></textarea>
+            </div>
+            <input type="submit" class="ui button" value="发布">
+        </form>
+    </div>
+</div>
+
+<%- include('footer') %>
